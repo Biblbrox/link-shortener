@@ -83,6 +83,18 @@ class LinkShortener
 
     public function createShortWithCustom($url, $custom)
     {
+        if (empty($url)) {
+            throw new \InvalidArgumentException("Url must not be empty");
+        }
+
+        if (!$this->validateUrlFormat($url)) {
+            throw new \InvalidArgumentException("URL is invalid");
+        }
+
+        if (!$this->urlExist($url)) {
+            throw new \InvalidArgumentException("This url doesn't exist");
+        }
+
         $id = $this->insertUrlInDb($url);
         $shortCode = $custom;
         $this->insertShortCodeInDb($id, $shortCode);
@@ -146,10 +158,6 @@ class LinkShortener
                 "Short code does not appear to exist.");
         }
 
-        if ($increment == true) {
-            $this->incrementCounter($urlRow["id"]);
-        }
-
         return $urlRow["long_url"];
     }
 
@@ -168,15 +176,5 @@ class LinkShortener
 
         $result = $stmt->fetch();
         return (empty($result)) ? false : $result;
-    }
-
-    protected function incrementCounter($id) {
-        $query = "UPDATE " . self::$table .
-            " SET counter = counter + 1 WHERE id = :id";
-        $stmt = $this->pdo->prepare($query);
-        $params = [
-            "id" => $id
-        ];
-        $stmt->execute($params);
     }
 }

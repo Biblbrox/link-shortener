@@ -2,6 +2,6 @@
 
 return [
     'dsn' => 'mysql:host=localhost;dbname=urlshortener',
-    'username' => '',
-    'password' => ''
+    'username' => 'root',
+    'password' => '82348234'
 ];
