@@ -1,0 +1,31 @@
+.input-field {
+    display: block;
+    margin: 5px 5px 5px 0;
+}
+
+.container {
+    margin: 5px;
+}
+
+.input-submit {
+    background: #4f43ff;
+    color: white;
+    height: 35px;
+    margin: 5px 0 0 5px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    width: 150px;
+    padding: 5px;
+    text-align: center;
+}
+
+.input-submit:hover {
+    cursor: pointer;
+}
+
+body {
+    font-family: "DejaVu Sans", sans-serif;
+}
+
+
